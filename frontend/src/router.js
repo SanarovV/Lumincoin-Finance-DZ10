@@ -209,7 +209,7 @@ export class Router {
             },
         ]
         if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) && window.location.pathname !== '/sign-up') {
-            if (this.routes[window.location.pathname]) {
+            if (this.routes) {
                 this.openNewRoute('/login').then();
             } else {
                 this.openNewRoute('/404').then();
@@ -229,13 +229,13 @@ export class Router {
     }
 
     async openNewRoute(url) {
-        // if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) && url !== '/sign-up') {
-        //     if (this.routes[window.location.pathname]) {
-        //         url = '/login';
-        //     } else {
-        //         url = '/404';
-        //     }
-        // }
+        if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) && url !== '/sign-up') {
+            if (this.routes) {
+                url = '/login';
+            } else {
+                url = '/404';
+            }
+        }
         const currentRoute = window.location.pathname;
         history.pushState({}, '', url);
         await this.activateRoute(null, currentRoute);
@@ -276,7 +276,7 @@ export class Router {
                         scriptElements ? scriptElements.remove() : null;
                     });
                 }
-                if (currentRoute.unload && typeof currentRoute.load === 'function') {
+                if (currentRoute.unload && typeof currentRoute.unload === 'function') {
                     currentRoute.unload();
                 }
             }
@@ -302,9 +302,9 @@ export class Router {
                     if (!this.userName) {
                         let userInfo = AuthUtils.getAuthInfo(AuthUtils.userInfoTokenKey);
                         if (userInfo) {
-                            const parsedUserInfo = JSON.parse(userInfo);
-                            if (parsedUserInfo.name) {
-                                this.userName = `${parsedUserInfo.name} ${parsedUserInfo.lastName}`;
+                            userInfo = JSON.parse(userInfo);
+                            if (userInfo.name) {
+                                this.userName = `${userInfo.name} ${userInfo.lastName}`;
                             }
                         }
                     }

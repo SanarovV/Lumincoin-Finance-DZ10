@@ -65,7 +65,6 @@ export class MainPage {
 
     async getCategoryAggregation(data, type) {
         let categoriesRequestResult = await HttpUtils.request(`/categories/` + type);
-        console.log(categoriesRequestResult.response);
         const categoriesObject = {};
         const myArray = categoriesRequestResult.toString().split('')
         myArray.response?.forEach((element) => categoriesObject[element.title] = element.id);

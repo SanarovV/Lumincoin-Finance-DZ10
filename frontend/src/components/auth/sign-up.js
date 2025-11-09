@@ -85,7 +85,6 @@ export class SignUp {
             });
 
             if (signupResult) {
-                // signupResult = signupResult.tokens;
                 AuthUtils.setAuthInfo(signupResult.accessToken, signupResult.refreshToken, {
                     user: {
                         id: signupResult.id,
@@ -94,7 +93,7 @@ export class SignUp {
                         lastName: signupResult.lastName,
                     }
                 });
-                return this.openNewRoute('/');
+                return this.openNewRoute('/login');
             }
         }
     };
