@@ -26,7 +26,7 @@ export class Router {
                 filePathTemplate: 'templates/pages/main.html',
                 useLayout: 'templates/layout.html',
                 load: () => {
-                    new MainPage();
+                    this.openNewRoute('/login').then();
                 },
                 styles: [],
                 scripts: ['chart.umd.js'],
