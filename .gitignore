@@ -1,0 +1,15 @@
+# Зависимости
+node_modules/
+.env
+
+# Сборка фронтенда
+frontend/dist/
+frontend/build/
+
+# Настройки редакторов кода
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
