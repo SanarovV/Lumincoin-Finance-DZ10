@@ -1,4 +1,4 @@
-const host = 'http://localhost:3000';
+const host = 'https://lumincoin-backend-jg6t.onrender.com';
 
 const config = {
     api: host + '/api',
