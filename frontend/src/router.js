@@ -23,8 +23,8 @@ export class Router {
             {
                 route: '/',
                 title: 'Главная',
-                filePathTemplate: '/templates/pages/main.html',
-                useLayout: '/templates/layout.html',
+                filePathTemplate: 'templates/pages/main.html',
+                useLayout: 'templates/layout.html',
                 load: () => {
                     new MainPage();
                 },
@@ -36,7 +36,7 @@ export class Router {
             {
                 route: '/login',
                 title: 'Вход',
-                filePathTemplate: '/templates/pages/auth/login.html',
+                filePathTemplate: 'templates/pages/auth/login.html',
                 useLayout: null,
                 load: () => {
                     new Login(this.openNewRoute.bind(this));
@@ -59,7 +59,7 @@ export class Router {
             {
                 route: '/sign-up',
                 title: 'Регистрация',
-                filePathTemplate: '/templates/pages/auth/sign-up.html',
+                filePathTemplate: 'templates/pages/auth/sign-up.html',
                 useLayout: null,
                 load: () => {
                     new SignUp(this.openNewRoute.bind(this));
@@ -72,7 +72,7 @@ export class Router {
             {
                 route: '/404',
                 title: '404',
-                filePathTemplate: '/templates/pages/404.html',
+                filePathTemplate: 'templates/pages/404.html',
                 useLayout: null,
                 load: () => {
                     new NotFoundError(this.historyBackLink);
@@ -81,9 +81,9 @@ export class Router {
             {
                 route: '/balance',
                 title: 'Баланс',
-                filePathTemplate: '/templates/pages/balance/balance.html',
-                useLayout: '/templates/layout.html',
-                includes: ['/templates/includes/delete-modal.html'],
+                filePathTemplate: 'templates/pages/balance/balance.html',
+                useLayout: 'templates/layout.html',
+                includes: ['templates/includes/delete-modal.html'],
                 load: () => {
                     new Balance();
                 },
@@ -96,9 +96,9 @@ export class Router {
             {
                 route: '/categories/income',
                 title: 'Категории доходов',
-                filePathTemplate: '/templates/pages/categories/categories-list.html',
-                useLayout: '/templates/layout.html',
-                includes: ['/templates/includes/delete-modal.html'],
+                filePathTemplate: 'templates/pages/categories/categories-list.html',
+                useLayout: 'templates/layout.html',
+                includes: ['templates/includes/delete-modal.html'],
                 load: () => {
                     new Categories('income');
                 },
@@ -111,9 +111,9 @@ export class Router {
             {
                 route: '/categories/expense',
                 title: 'Категории расходов',
-                filePathTemplate: '/templates/pages/categories/categories-list.html',
-                useLayout: '/templates/layout.html',
-                includes: ['/templates/includes/delete-modal.html'],
+                filePathTemplate: 'templates/pages/categories/categories-list.html',
+                useLayout: 'templates/layout.html',
+                includes: ['templates/includes/delete-modal.html'],
                 load: () => {
                     new Categories('expense');
                 },
@@ -126,8 +126,8 @@ export class Router {
             {
                 route: '/categories/income/edit',
                 title: 'Редактирование категории',
-                filePathTemplate: '/templates/pages/categories/category.html',
-                useLayout: '/templates/layout.html',
+                filePathTemplate: 'templates/pages/categories/category.html',
+                useLayout: 'templates/layout.html',
                 includes: [],
                 load: () => {
                     new Category(this.openNewRoute.bind(this), 'income', 'edit');
@@ -140,8 +140,8 @@ export class Router {
             {
                 route: '/categories/income/create',
                 title: 'Создание категории',
-                filePathTemplate: '/templates/pages/categories/category.html',
-                useLayout: '/templates/layout.html',
+                filePathTemplate: 'templates/pages/categories/category.html',
+                useLayout: 'templates/layout.html',
                 includes: [],
                 load: () => {
                     new Category(this.openNewRoute.bind(this), 'income', 'create');
@@ -154,8 +154,8 @@ export class Router {
             {
                 route: '/categories/expense/edit',
                 title: 'Редактирование категории',
-                filePathTemplate: '/templates/pages/categories/category.html',
-                useLayout: '/templates/layout.html',
+                filePathTemplate: 'templates/pages/categories/category.html',
+                useLayout: 'templates/layout.html',
                 includes: [],
                 load: () => {
                     new Category(this.openNewRoute.bind(this), 'expense', 'edit');
@@ -168,8 +168,8 @@ export class Router {
             {
                 route: '/categories/expense/create',
                 title: 'Создание категории',
-                filePathTemplate: '/templates/pages/categories/category.html',
-                useLayout: '/templates/layout.html',
+                filePathTemplate: 'templates/pages/categories/category.html',
+                useLayout: 'templates/layout.html',
                 includes: [],
                 load: () => {
                     new Category(this.openNewRoute.bind(this), 'expense', 'create');
@@ -182,8 +182,8 @@ export class Router {
             {
                 route: '/balance/create',
                 title: 'Создать операцию',
-                filePathTemplate: '/templates/pages/balance/operation.html',
-                useLayout: '/templates/layout.html',
+                filePathTemplate: 'templates/pages/balance/operation.html',
+                useLayout: 'templates/layout.html',
                 includes: [],
                 load: () => {
                     new OperationCreate(this.openNewRoute.bind(this));
@@ -196,8 +196,8 @@ export class Router {
             {
                 route: '/balance/edit',
                 title: 'Редактировать операцию',
-                filePathTemplate: '/templates/pages/balance/operation.html',
-                useLayout: '/templates/layout.html',
+                filePathTemplate: 'templates/pages/balance/operation.html',
+                useLayout: 'templates/layout.html',
                 includes: [],
                 load: () => {
                     new OperationEdit(this.openNewRoute.bind(this));
@@ -208,7 +208,8 @@ export class Router {
                 }
             },
         ]
-        if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) && window.location.pathname !== '/sign-up') {
+        if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) && window.location.pathname !== '/sign-up'
+            && window.location.pathname !== '/login') {
             if (this.routes) {
                 this.openNewRoute('/login').then();
             } else {
