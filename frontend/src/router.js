@@ -26,7 +26,7 @@ export class Router {
                 filePathTemplate: 'templates/pages/main.html',
                 useLayout: 'templates/layout.html',
                 load: () => {
-                    this.openNewRoute('/login').then();
+                    new MainPage();
                 },
                 styles: [],
                 scripts: ['chart.umd.js'],
@@ -208,8 +208,7 @@ export class Router {
                 }
             },
         ]
-        if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) && window.location.pathname !== '/sign-up'
-            && window.location.pathname !== '/login') {
+        if (!AuthUtils.getAuthInfo(AuthUtils.accessTokenKey) && window.location.pathname !== '/sign-up') {
             if (this.routes) {
                 this.openNewRoute('/login').then();
             } else {
